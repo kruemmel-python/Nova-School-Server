@@ -17,6 +17,8 @@ Nova School Server is a browser-based coding and learning platform for schools. 
 - [Contributing](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
 - [Changelog](CHANGELOG.md)
+- [Roadmap](docs/roadmap.md)
+- [Release Process](docs/release-process.md)
 
 ## Inhaltsverzeichnis
 

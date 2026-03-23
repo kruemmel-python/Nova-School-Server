@@ -1,0 +1,82 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "Something is broken or behaves incorrectly"
+  },
+  {
+    "name": "enhancement",
+    "color": "a2eeef",
+    "description": "New feature, workflow improvement, or product enhancement"
+  },
+  {
+    "name": "documentation",
+    "color": "0075ca",
+    "description": "Documentation, manuals, reference library, or README work"
+  },
+  {
+    "name": "security",
+    "color": "b60205",
+    "description": "Security, isolation, auth, permissions, or secret-handling work"
+  },
+  {
+    "name": "frontend",
+    "color": "1d76db",
+    "description": "Frontend UI, UX, layout, or browser interaction"
+  },
+  {
+    "name": "runner",
+    "color": "0e8a16",
+    "description": "Code execution, containers, PTY, runtime, or sandboxing"
+  },
+  {
+    "name": "curriculum",
+    "color": "5319e7",
+    "description": "Courses, assessments, certificates, and learning workflows"
+  },
+  {
+    "name": "offline-docs",
+    "color": "fbca04",
+    "description": "Offline documentation, reference packs, mirrors, and search"
+  },
+  {
+    "name": "distributed-worker",
+    "color": "0052cc",
+    "description": "Remote workers, dispatch, topology, and distributed execution"
+  },
+  {
+    "name": "admin-ui",
+    "color": "c2e0c6",
+    "description": "Administration panel, settings, roles, and management flows"
+  },
+  {
+    "name": "ai-mentor",
+    "color": "bfdadc",
+    "description": "LM Studio, AI help, mentor flows, and prompt behavior"
+  },
+  {
+    "name": "priority:high",
+    "color": "e11d21",
+    "description": "High-priority work with strong delivery impact"
+  },
+  {
+    "name": "release:blocker",
+    "color": "6f42c1",
+    "description": "Must be resolved before the next planned release"
+  },
+  {
+    "name": "needs:repro",
+    "color": "d4c5f9",
+    "description": "Needs a reliable reproduction or narrower failure scope"
+  },
+  {
+    "name": "good first issue",
+    "color": "7057ff",
+    "description": "Good for newcomers"
+  },
+  {
+    "name": "help wanted",
+    "color": "008672",
+    "description": "Extra attention is needed"
+  }
+]
