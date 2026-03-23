@@ -1,6 +1,7 @@
 # Nova School Server
 
 [![Release](https://img.shields.io/github/v/release/kruemmel-python/Nova-School-Server?display_name=tag)](https://github.com/kruemmel-python/Nova-School-Server/releases)
+[![CI](https://github.com/kruemmel-python/Nova-School-Server/actions/workflows/ci.yml/badge.svg)](https://github.com/kruemmel-python/Nova-School-Server/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)
 ![Server](https://img.shields.io/badge/Server-Windows%20%7C%20Linux-1d7d75)
 ![Clients](https://img.shields.io/badge/Clients-Browser%20based-8f412f)
@@ -19,6 +20,7 @@ Nova School Server is a browser-based coding and learning platform for schools. 
 - [Changelog](CHANGELOG.md)
 - [Roadmap](docs/roadmap.md)
 - [Release Process](docs/release-process.md)
+- [CODEOWNERS](.github/CODEOWNERS)
 
 ## Inhaltsverzeichnis
 

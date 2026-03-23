@@ -1,0 +1,89 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "CHANGELOG.md"
+          - "CONTRIBUTING.md"
+          - "SECURITY.md"
+          - "docs/**"
+          - "wiki/**"
+          - ".github/**"
+
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/static/**"
+
+runner:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/code_runner.py"
+          - "nova_school_server/realtime.py"
+          - "nova_school_server/pty_host.py"
+          - "nova_school_server/container_seccomp.py"
+          - "nova_school_server/worker_agent.py"
+          - "nova_school_server/tests/test_code_runner.py"
+          - "nova_school_server/tests/test_realtime.py"
+          - "nova_school_server/tests/test_pty_host.py"
+          - "nova_school_server/tests/test_container_seccomp.py"
+          - "nova_school_server/tests/test_worker_agent.py"
+
+curriculum:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/curriculum.py"
+          - "nova_school_server/curriculum_catalog.py"
+          - "nova_school_server/curriculum_certificate_pdf.py"
+          - "nova_school_server/tests/test_curriculum.py"
+
+offline-docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/reference_*.py"
+          - "nova_school_server/wiki_manual.py"
+          - "nova_school_server/nova_product_docs.py"
+          - "nova_school_server/docs_catalog.py"
+          - "docs/nova_school/**"
+          - "wiki/**"
+          - "nova_school_server/tests/test_reference_*.py"
+          - "nova_school_server/tests/test_wiki_manual.py"
+          - "nova_school_server/tests/test_nova_product_docs.py"
+
+distributed-worker:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/distributed.py"
+          - "nova_school_server/worker_dispatch.py"
+          - "nova_school_server/worker_agent.py"
+          - "nova_school_server/tests/test_worker_agent.py"
+
+admin-ui:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/user_admin.py"
+          - "nova_school_server/permissions.py"
+          - "nova_school_server/server.py"
+          - "nova_school_server/static/index.html"
+          - "nova_school_server/static/app.js"
+          - "nova_school_server/static/app.css"
+          - "nova_school_server/tests/test_user_admin.py"
+          - "nova_school_server/tests/test_permissions.py"
+
+ai-mentor:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/mentor.py"
+          - "nova_school_server/lms_client.py"
+          - "nova_school_server/tests/test_lms_client.py"
+
+security:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "nova_school_server/auth.py"
+          - "nova_school_server/permissions.py"
+          - "nova_school_server/container_seccomp.py"
+          - "nova_school_server/worker_dispatch.py"
+          - "nova_school_server/worker_agent.py"
+          - "nova_school_server/code_runner.py"
+          - "nova_school_server/seccomp_profiles/**"
+          - "SECURITY.md"

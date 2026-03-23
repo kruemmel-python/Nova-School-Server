@@ -15,6 +15,11 @@
     "description": "Documentation, manuals, reference library, or README work"
   },
   {
+    "name": "dependencies",
+    "color": "0366d6",
+    "description": "Dependency updates for Python packages or GitHub Actions"
+  },
+  {
     "name": "security",
     "color": "b60205",
     "description": "Security, isolation, auth, permissions, or secret-handling work"

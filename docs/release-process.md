@@ -58,6 +58,8 @@ The repository uses labels in three groups:
 
 The canonical label set is versioned in `.github/labels.json`.
 
+Label synchronization is automated through the `Sync Labels` GitHub Actions workflow.
+
 ## Issue Triage
 
 When new issues arrive:
@@ -88,6 +90,9 @@ Before publishing a release:
 5. generate release notes from Git history
 6. build and verify release assets
 7. publish the GitHub release and attach assets
+
+For tag-based releases, the repository also contains an automated `Release Assets` workflow that builds the source,
+distribution, Windows server package, and Linux server package artifacts directly from GitHub Actions.
 
 ## Release Notes
 

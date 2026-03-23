@@ -1,0 +1,84 @@
+name: Release Assets
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Existing Git tag to build and publish"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -e .
+
+      - name: Prepare version variables
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG_NAME="${{ inputs.tag_name }}"
+          else
+            TAG_NAME="${GITHUB_REF_NAME}"
+          fi
+          VERSION="${TAG_NAME#v}"
+          echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_ENV"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          mkdir -p release-artifacts
+
+      - name: Build source archive
+        shell: bash
+        run: |
+          git archive --format=zip --output "release-artifacts/Nova-School-Server-${TAG_NAME}-source.zip" "${TAG_NAME}"
+
+      - name: Build distribution archives
+        shell: bash
+        run: |
+          python -m nova_school_server.distribution_builder . --output-dir release-artifacts --version "$VERSION"
+          python -m nova_school_server.distribution_builder . --output-dir release-artifacts --version "$VERSION" --flavor windows-server-package
+          python -m nova_school_server.distribution_builder . --output-dir release-artifacts --version "$VERSION" --flavor linux-server-package
+
+      - name: Generate release notes
+        shell: bash
+        run: |
+          python -m nova_school_server.release_notes . --notes-tag "$TAG_NAME" --notes-path "release-artifacts/release-notes-${TAG_NAME}.md"
+
+      - name: Publish GitHub release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          body_path: release-artifacts/release-notes-${{ env.TAG_NAME }}.md
+          fail_on_unmatched_files: true
+          files: |
+            release-artifacts/Nova-School-Server-${{ env.TAG_NAME }}-source.zip
+            release-artifacts/Nova-School-Server-v${{ env.VERSION }}-distribution.zip
+            release-artifacts/Nova-School-Server-v${{ env.VERSION }}-windows-server-package.zip
+            release-artifacts/Nova-School-Server-v${{ env.VERSION }}-linux-server-package.zip
+
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-${{ env.TAG_NAME }}
+          path: release-artifacts/
