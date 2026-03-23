@@ -72,6 +72,30 @@ Wichtig unter Windows:
 - Die Windows-Firewall muss eingehende Verbindungen auf Port `8877` zulassen.
 - Falls der Zugriff aus dem LAN trotzdem scheitert, die Firewall-Regel oder das Netzwerkprofil des Adapters prüfen.
 
+## Release-Arten
+
+Es gibt zwei saubere Veroeffentlichungsformen fuer GitHub-Releases:
+
+- `Source Release`
+  - nur der bereinigte Projektquellcode
+  - geeignet fuer Entwicklung, Review und eigene Builds
+- `Distribution Release`
+  - bereinigtes Schulpaket mit leerer `data/`-Struktur, Startskripten und Beispielkonfiguration
+  - ohne lokale Datenbanken, PKI-Artefakte, Referenz-Mirror-Caches oder bestehende Workspaces
+
+Distribution-Paket lokal bauen:
+
+```powershell
+cd D:\Nova_school_server
+python -m nova_school_server.distribution_builder D:\Nova_school_server --output-dir D:\Nova_school_server
+```
+
+Oder nach Installation des Projekts:
+
+```powershell
+nova-school-build-distribution D:\Nova_school_server --output-dir D:\Nova_school_server
+```
+
 ## Demo-Logins
 
 - `admin / NovaSchool!admin`
