@@ -1,6 +1,35 @@
 # Nova School Server
 
+[![Release](https://img.shields.io/github/v/release/kruemmel-python/Nova-School-Server?display_name=tag)](https://github.com/kruemmel-python/Nova-School-Server/releases)
+![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)
+![Server](https://img.shields.io/badge/Server-Windows%20%7C%20Linux-1d7d75)
+![Clients](https://img.shields.io/badge/Clients-Browser%20based-8f412f)
+[![License](https://img.shields.io/github/license/kruemmel-python/Nova-School-Server)](LICENSE)
+
 Nova School Server ist eine browserbasierte Lern- und Entwicklungsplattform fuer Informatikunterricht im Schulnetz. Der Server stellt Projekte, Editor, Notebooks, Offline-Dokumentation, modulare Lehrplaene, KI-Unterstuetzung und abgesicherte Code-Ausfuehrung zentral bereit. Schueler und Lehrkraefte arbeiten ueber den Browser; die Ausfuehrung und Verwaltung liegen auf dem Server oder auf angebundenen Workern.
+
+## English Summary
+
+Nova School Server is a browser-based coding and learning platform for schools. It combines project workspaces, live code execution, offline documentation, curriculum modules, assessments, certificates, AI support, and secure server-side execution in one centrally managed classroom environment. Students only need a browser, while teachers and administrators control permissions, infrastructure, and learning workflows.
+
+## Inhaltsverzeichnis
+
+- [Kernfunktionen](#kernfunktionen)
+- [Plattformueberblick](#plattformueberblick)
+- [Architektur](#architektur)
+- [Zielbild](#zielbild)
+- [Voraussetzungen](#voraussetzungen)
+- [Schnellstart](#schnellstart)
+- [Erster Zugriff](#erster-zugriff)
+- [Betriebskonzept](#betriebskonzept)
+- [Zentrale Produktbereiche](#zentrale-produktbereiche)
+- [Offline-Referenzbibliothek](#offline-referenzbibliothek)
+- [Remote Worker](#remote-worker)
+- [Release-Arten](#release-arten)
+- [Release-Notes und Changelog](#release-notes-und-changelog)
+- [Tests](#tests)
+- [Projektstruktur](#projektstruktur)
+- [Lizenz](#lizenz)
 
 ## Kernfunktionen
 
@@ -13,6 +42,29 @@ Nova School Server ist eine browserbasierte Lern- und Entwicklungsplattform fuer
 - Kollaborative Notebooks, Chat, Peer Review und Audit-Protokolle
 - Distributed Playground mit Remote-Workern fuer verteilte Systeme
 - Share- und Export-Funktionen fuer Unterrichts- und Abgabeformate
+
+## Plattformueberblick
+
+![Nova School Server Plattformueberblick](docs/assets/readme-platform-overview.svg)
+
+Die Plattform verbindet Unterrichtsalltag und Betriebslogik in einer einzigen Oberflaeche:
+
+- Projektlisten und Workspaces fuer Benutzer und Gruppen
+- browserbasierter Editor mit Datei-, Notebook- und Live-Modus
+- integrierte Dokumentation und Referenzbibliothek
+- lehrplangestuetztes Lernen mit Pruefungen und Zertifikaten
+
+## Architektur
+
+![Nova School Server Architektur](docs/assets/readme-architecture.svg)
+
+Die technische Architektur trennt bewusst zwischen Zugriff, Steuerung und Ausfuehrung:
+
+- Browser-Clients fuer Schueler, Lehrkraefte und Administration
+- zentraler Server fuer UI, API, Sessions, Rechte, Audits und Kurslogik
+- lokale Datenhaltung fuer Workspaces, Suchindizes, Zertifikate und Betriebsdaten
+- optionale KI-Integration ueber LM Studio
+- optional isolierte Ausfuehrung ueber Container-Runtime und Remote-Worker
 
 ## Zielbild
 

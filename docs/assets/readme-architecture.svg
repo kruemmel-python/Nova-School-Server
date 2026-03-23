@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="860" viewBox="0 0 1280 860" role="img" aria-labelledby="title desc">
+  <title id="title">Nova School Server Architecture</title>
+  <desc id="desc">Architecture diagram showing browser clients, the Nova School Server, storage, documentation, AI, and remote worker execution.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f4e8"/>
+      <stop offset="100%" stop-color="#edf3ef"/>
+    </linearGradient>
+    <linearGradient id="server" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#173d34"/>
+      <stop offset="100%" stop-color="#246157"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffefb"/>
+      <stop offset="100%" stop-color="#f3efe4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#193831" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#1d7d75"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="860" fill="url(#bg)"/>
+
+  <rect x="70" y="90" width="270" height="196" rx="28" fill="url(#card)" filter="url(#shadow)"/>
+  <text x="102" y="142" font-family="Georgia, serif" font-size="34" fill="#22302b" font-weight="700">Browser Clients</text>
+  <text x="102" y="188" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Schueler</text>
+  <text x="102" y="222" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Lehrkraefte</text>
+  <text x="102" y="256" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Admin</text>
+
+  <rect x="70" y="346" width="270" height="190" rx="28" fill="url(#card)" filter="url(#shadow)"/>
+  <text x="102" y="398" font-family="Georgia, serif" font-size="34" fill="#22302b" font-weight="700">Unterrichtsfluss</text>
+  <text x="102" y="444" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Projekte und Dateien</text>
+  <text x="102" y="478" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Notebooks und Live-Runs</text>
+  <text x="102" y="512" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Dokumentation und Kurse</text>
+
+  <rect x="420" y="72" width="438" height="706" rx="36" fill="url(#server)" filter="url(#shadow)"/>
+  <text x="470" y="132" font-family="Georgia, serif" font-size="42" fill="#f7f2e8" font-weight="700">Nova School Server</text>
+  <text x="470" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#d9e7dd">Web-UI, API, Sessions, Rechte, Audits und Unterrichtslogik</text>
+
+  <rect x="468" y="214" width="342" height="104" rx="24" fill="#f7f4eb"/>
+  <text x="494" y="256" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#24312d" font-weight="700">Server und API</text>
+  <text x="494" y="290" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#55625d">HTTP, WebSocket, Sessions, Rollen und Admin-Endpunkte</text>
+
+  <rect x="468" y="338" width="342" height="120" rx="24" fill="#f7f4eb"/>
+  <text x="494" y="380" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#24312d" font-weight="700">Workspaces und Daten</text>
+  <text x="494" y="414" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#55625d">Benutzer, Gruppen, Projekte, Notebooks, Audits, Zertifikate</text>
+  <text x="494" y="444" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#55625d">und Suchindizes fuer Dokumentation</text>
+
+  <rect x="468" y="478" width="342" height="124" rx="24" fill="#f7f4eb"/>
+  <text x="494" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#24312d" font-weight="700">Runner und Sicherheit</text>
+  <text x="494" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#55625d">Container, Scheduler, Limits, Seccomp, PTY, Live-Eingabe</text>
+  <text x="494" y="584" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#55625d">und Proxy-/Webzugriffssteuerung</text>
+
+  <rect x="468" y="622" width="342" height="120" rx="24" fill="#f7f4eb"/>
+  <text x="494" y="664" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#24312d" font-weight="700">Lehrlogik und Inhalte</text>
+  <text x="494" y="698" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#55625d">Modullehrplaene, Pruefungen, Peer Review, Mentor und Chat</text>
+
+  <rect x="940" y="82" width="280" height="146" rx="28" fill="url(#card)" filter="url(#shadow)"/>
+  <text x="972" y="134" font-family="Georgia, serif" font-size="34" fill="#22302b" font-weight="700">Offline-Dokumentation</text>
+  <text x="972" y="178" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Referenzbibliothek</text>
+  <text x="972" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Produkt- und Rollenhandbuecher</text>
+
+  <rect x="940" y="272" width="280" height="146" rx="28" fill="url(#card)" filter="url(#shadow)"/>
+  <text x="972" y="324" font-family="Georgia, serif" font-size="34" fill="#22302b" font-weight="700">KI und Mentor</text>
+  <text x="972" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- LM Studio</text>
+  <text x="972" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Sokratischer Hilfemodus</text>
+
+  <rect x="940" y="462" width="280" height="146" rx="28" fill="url(#card)" filter="url(#shadow)"/>
+  <text x="972" y="514" font-family="Georgia, serif" font-size="34" fill="#22302b" font-weight="700">Remote Worker</text>
+  <text x="972" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Distributed Playground</text>
+  <text x="972" y="590" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- isolierte Service-Ausfuehrung</text>
+
+  <rect x="940" y="652" width="280" height="126" rx="28" fill="url(#card)" filter="url(#shadow)"/>
+  <text x="972" y="704" font-family="Georgia, serif" font-size="34" fill="#22302b" font-weight="700">Container Runtime</text>
+  <text x="972" y="748" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#56645e">- Docker oder Podman</text>
+
+  <line x1="340" y1="188" x2="420" y2="188" stroke="#1d7d75" stroke-width="8" marker-end="url(#arrow)"/>
+  <line x1="340" y1="442" x2="420" y2="442" stroke="#1d7d75" stroke-width="8" marker-end="url(#arrow)"/>
+  <line x1="858" y1="155" x2="940" y2="155" stroke="#1d7d75" stroke-width="8" marker-end="url(#arrow)"/>
+  <line x1="858" y1="345" x2="940" y2="345" stroke="#1d7d75" stroke-width="8" marker-end="url(#arrow)"/>
+  <line x1="858" y1="535" x2="940" y2="535" stroke="#1d7d75" stroke-width="8" marker-end="url(#arrow)"/>
+  <line x1="858" y1="715" x2="940" y2="715" stroke="#1d7d75" stroke-width="8" marker-end="url(#arrow)"/>
+
+  <text x="68" y="830" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#5a6861">Architekturueberblick: Browser-Clients greifen auf einen zentralen Schulserver zu, der Inhalte, Rechte, Dokumentation, KI, sichere Ausfuehrung und Remote-Worker orchestriert.</text>
+</svg>
