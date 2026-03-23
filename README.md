@@ -113,6 +113,32 @@ Diese Pakete enthalten dieselbe bereinigte Serverbasis, aber mit eigener Install
   - nur Linux-Startskripte
   - Anleitung fuer venv, Docker/Podman und produktiven Ubuntu-Betrieb
 
+## Release-Notes und Changelog
+
+Release-Notes und `CHANGELOG.md` koennen automatisch aus Git-Tags und Commit-Historie erzeugt werden.
+
+Changelog lokal erzeugen:
+
+```powershell
+cd D:\Nova_school_server
+python -m nova_school_server.release_notes D:\Nova_school_server
+```
+
+Oder nach Installation des Projekts:
+
+```powershell
+nova-school-build-release-notes D:\Nova_school_server
+```
+
+Zusatzlich Release-Notes fuer ein bestimmtes Tag erzeugen:
+
+```powershell
+python -m nova_school_server.release_notes D:\Nova_school_server --notes-tag v0.1.0 --notes-path D:\Nova_school_server\release-notes-v0.1.0.md
+```
+
+Der Generator schreibt standardmaessig `CHANGELOG.md` in die Projektwurzel und gruppiert Commits nach
+`Release`, `Added`, `Fixed` und `Changed`.
+
 ## Demo-Logins
 
 - `admin / NovaSchool!admin`
