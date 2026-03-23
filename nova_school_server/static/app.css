@@ -1,0 +1,396 @@
+:root {
+  color-scheme: light;
+  --bg: #efe7d2;
+  --panel: rgba(255, 252, 246, 0.92);
+  --panel-strong: rgba(255, 255, 255, 0.96);
+  --ink: #182126;
+  --muted: #5e6c6e;
+  --accent: #126d67;
+  --accent-dark: #0a4d49;
+  --warm: #8f412f;
+  --line: rgba(24, 33, 38, 0.1);
+  --shadow: 0 28px 80px rgba(24, 33, 38, 0.12);
+  --radius: 24px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: linear-gradient(140deg, #f7eed9 0%, #d8e8df 48%, #bfd1d7 100%);
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(143, 65, 47, 0.16), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(18, 109, 103, 0.18), transparent 24%),
+    radial-gradient(circle at 70% 82%, rgba(24, 33, 38, 0.09), transparent 30%);
+  pointer-events: none;
+}
+
+.hidden { display: none !important; }
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+.lead, .muted { color: var(--muted); }
+
+.login-shell, .app-shell { position: relative; z-index: 1; }
+
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.login-card {
+  width: min(720px, 100%);
+  padding: 2rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+}
+
+.app-shell { padding: 1.4rem; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 0 1rem;
+}
+
+.topbar h1, .panel-section h2, .panel-section h3 { margin: 0; font-weight: 600; }
+
+.topbar-actions, .inline-actions, .section-head {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+#live-run-status { margin: 0; }
+
+.section-head {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.status-banner {
+  min-height: 1.4rem;
+  margin: 0 0 1rem;
+  color: var(--accent-dark);
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 300px) minmax(480px, 1.5fr) minmax(300px, 360px);
+  gap: 1rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.panel-section {
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-section:last-child { border-bottom: none; }
+
+.stack { display: grid; gap: 0.85rem; }
+.compact { gap: 0.6rem; }
+.toggle-row { display: flex; align-items: center; gap: 0.65rem; }
+.toggle-row input[type="checkbox"] { width: 1rem; height: 1rem; }
+
+label span {
+  display: block;
+  margin-bottom: 0.28rem;
+  font-size: 0.92rem;
+}
+
+input, textarea, select, button { font: inherit; }
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 33, 38, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+}
+
+fieldset {
+  margin: 0;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(24, 33, 38, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+legend {
+  padding: 0 0.35rem;
+  font-weight: 600;
+}
+
+textarea { resize: vertical; }
+
+button {
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(24, 33, 38, 0.08);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button.primary { background: var(--accent); color: white; }
+button.danger { background: var(--warm); color: white; }
+
+.demo-box, .output-box, .doc-content, .chat-messages, .file-tree, .project-list, .admin-summary, .admin-card {
+  background: var(--panel-strong);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  border-radius: 18px;
+  padding: 0.9rem;
+}
+
+.project-list, .file-tree, .chat-messages, .doc-content { max-height: 320px; overflow: auto; }
+
+.project-button, .tree-button {
+  width: 100%;
+  margin-bottom: 0.55rem;
+  text-align: left;
+  border-radius: 14px;
+}
+
+.project-button.active, .tree-button.active {
+  background: var(--accent);
+  color: white;
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+}
+
+.file-editor {
+  min-height: 360px;
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+
+.stdin-box,
+.cell-stdin {
+  min-height: 90px;
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+
+.run-stdin-wrap {
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.output-box {
+  min-height: 180px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.terminal-surface {
+  white-space: pre;
+  font-family: "Cascadia Code", Consolas, monospace;
+  line-height: 1.35;
+  outline: none;
+}
+
+.terminal-surface:focus {
+  box-shadow: inset 0 0 0 2px rgba(18, 109, 103, 0.25);
+}
+
+.output-box .term-cursor {
+  display: inline-block;
+  min-width: 0.7ch;
+  background: rgba(18, 109, 103, 0.35);
+  color: transparent;
+  animation: term-blink 1s steps(1, end) infinite;
+}
+
+@keyframes term-blink {
+  50% { opacity: 0.35; }
+}
+
+.notebook-cells { display: grid; gap: 0.9rem; }
+.presence-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.presence-chip {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(18, 109, 103, 0.1);
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+}
+
+.notebook-cell {
+  padding: 0.9rem;
+  background: var(--panel-strong);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  border-radius: 18px;
+}
+
+.cell-toolbar {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.cell-code {
+  min-height: 150px;
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+
+.cell-stdin-wrap {
+  display: block;
+  margin-top: 0.7rem;
+}
+
+.cell-output { margin-top: 0.7rem; min-height: 90px; }
+.mentor-thread { margin-top: 0.8rem; max-height: 220px; }
+
+.service-card,
+.review-card,
+.artifact-card {
+  background: var(--panel-strong);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  border-radius: 18px;
+  padding: 0.9rem;
+}
+
+.curriculum-result.success {
+  border-color: rgba(18, 109, 103, 0.28);
+  background: rgba(18, 109, 103, 0.08);
+}
+
+.curriculum-result.warning {
+  border-color: rgba(143, 65, 47, 0.24);
+  background: rgba(143, 65, 47, 0.08);
+}
+
+.service-card h3,
+.review-card h3,
+.artifact-card h3 {
+  margin: 0 0 0.45rem;
+}
+
+.chat-message {
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(24, 33, 38, 0.08);
+}
+
+.chat-message:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.chat-author { font-weight: 700; }
+
+.doc-content { line-height: 1.65; }
+.doc-content pre {
+  padding: 0.9rem;
+  overflow: auto;
+  border-radius: 14px;
+  background: #f3f6f5;
+}
+
+.admin-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 0.9rem;
+}
+
+.settings-fieldset {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.settings-grid,
+.readout-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.readout-grid-wide {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.readout-item {
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(24, 33, 38, 0.04);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+}
+
+.readout-item dt {
+  margin: 0 0 0.3rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+.readout-item dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.permission-grid {
+  display: grid;
+  gap: 0.45rem;
+  max-height: 320px;
+  overflow: auto;
+  margin: 0.8rem 0;
+}
+
+.permission-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 12px;
+  background: rgba(24, 33, 38, 0.04);
+}
+
+@media (max-width: 1200px) {
+  .workspace-grid { grid-template-columns: 1fr; }
+  .editor-layout { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,273 @@
+.manual-body {
+  min-height: 100vh;
+}
+
+.manual-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.4rem;
+}
+
+.manual-hero,
+.manual-card,
+.manual-article,
+.manual-switcher {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.manual-hero {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 360px);
+  padding: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.manual-hero h1 {
+  margin: 0 0 0.4rem;
+}
+
+.manual-lead,
+.manual-muted {
+  color: var(--muted);
+}
+
+.manual-hero-meta {
+  align-self: start;
+  padding: 1rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+}
+
+.manual-hero-meta p {
+  margin: 0 0 0.55rem;
+}
+
+.manual-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.manual-button,
+.manual-scope,
+.manual-nav-link,
+.manual-toc-link {
+  text-decoration: none;
+}
+
+.manual-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.05rem;
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(24, 33, 38, 0.08);
+}
+
+.manual-button.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.manual-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.manual-scope {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  color: var(--accent-dark);
+  background: rgba(18, 109, 103, 0.09);
+  border: 1px solid rgba(18, 109, 103, 0.12);
+}
+
+.manual-scope.active {
+  background: var(--accent);
+  color: white;
+}
+
+.manual-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.manual-sidebar {
+  display: grid;
+  gap: 1rem;
+  align-self: start;
+  position: sticky;
+  top: 1rem;
+}
+
+.manual-card {
+  padding: 1rem;
+}
+
+.manual-card h2 {
+  margin: 0 0 0.85rem;
+}
+
+.manual-nav,
+.manual-toc {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.manual-nav-link,
+.manual-toc-link {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  border-radius: 16px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(24, 33, 38, 0.06);
+}
+
+.manual-nav-link.active {
+  background: var(--accent);
+  color: white;
+}
+
+.manual-toc-link.level-3 {
+  margin-left: 1rem;
+}
+
+.manual-main {
+  min-width: 0;
+}
+
+.manual-article {
+  padding: 1.5rem;
+  line-height: 1.75;
+  background: rgba(255, 252, 246, 0.96);
+}
+
+.manual-article h1,
+.manual-article h2,
+.manual-article h3,
+.manual-article h4,
+.manual-article h5,
+.manual-article h6 {
+  scroll-margin-top: 1.2rem;
+}
+
+.manual-article h1 {
+  margin-top: 0;
+  font-size: clamp(2rem, 3.1vw, 2.7rem);
+}
+
+.manual-article h2 {
+  margin-top: 2rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(24, 33, 38, 0.08);
+}
+
+.manual-article p,
+.manual-article ul,
+.manual-article ol,
+.manual-article pre,
+.manual-article table {
+  margin: 0 0 1rem;
+}
+
+.manual-article ul,
+.manual-article ol {
+  padding-left: 1.4rem;
+}
+
+.manual-article li + li {
+  margin-top: 0.35rem;
+}
+
+.manual-article code {
+  padding: 0.12rem 0.35rem;
+  border-radius: 8px;
+  background: rgba(18, 109, 103, 0.1);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.94em;
+}
+
+.manual-code {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 20px;
+  background: #182126;
+  color: #f4f1e8;
+  border: 1px solid rgba(24, 33, 38, 0.2);
+}
+
+.manual-code code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.manual-table-wrap {
+  overflow: auto;
+}
+
+.manual-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  min-width: 520px;
+}
+
+.manual-table th,
+.manual-table td {
+  padding: 0.8rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(24, 33, 38, 0.08);
+  vertical-align: top;
+}
+
+.manual-table thead th {
+  background: rgba(18, 109, 103, 0.08);
+  color: var(--accent-dark);
+}
+
+.manual-article a {
+  color: var(--accent-dark);
+  text-decoration-thickness: 1.5px;
+}
+
+@media (max-width: 1040px) {
+  .manual-layout,
+  .manual-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .manual-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .manual-shell {
+    padding: 0.9rem;
+  }
+
+  .manual-article,
+  .manual-card,
+  .manual-hero {
+    padding: 1rem;
+  }
+}

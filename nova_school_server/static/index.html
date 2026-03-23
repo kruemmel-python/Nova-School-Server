@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nova School Server</title>
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <section id="login-view" class="login-shell">
+      <div class="login-card">
+        <p class="eyebrow">Nova School Server</p>
+        <h1>Lokaler Schulserver fuer Code, Gruppen und Rechte</h1>
+        <p class="lead">Sandbox-nahe Runner, Gruppen-Workspaces, Editor-UI, Chat, Offline-Dokumentation und LM-Studio-Codehilfe.</p>
+        <form id="login-form" class="stack">
+          <label><span>Benutzername</span><input id="login-username" name="username" type="text" required /></label>
+          <label><span>Passwort</span><input id="login-password" name="password" type="password" required /></label>
+          <button type="submit" class="primary">Anmelden</button>
+        </form>
+        <div class="demo-box">
+          <h2>Demo-Logins</h2>
+          <p><code>admin / NovaSchool!admin</code></p>
+          <p><code>teacher / NovaSchool!teacher</code></p>
+          <p><code>student / NovaSchool!student</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="app-view" class="app-shell hidden">
+      <header class="topbar">
+        <div>
+          <p id="school-name" class="eyebrow">Nova School Server</p>
+          <h1 id="session-title">Arbeitsbereich</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="open-server-settings" type="button" class="hidden">Servereinstellungen</button>
+          <button id="open-manual" type="button">Bedienungsanleitung</button>
+          <button id="refresh-bootstrap" type="button">Aktualisieren</button>
+          <button id="logout-button" type="button" class="danger">Abmelden</button>
+        </div>
+      </header>
+
+      <p id="status-banner" class="status-banner"></p>
+
+      <main class="workspace-grid">
+        <aside class="panel left-panel">
+          <section class="panel-section">
+            <div class="section-head">
+              <h2>Projekte</h2>
+              <button id="reload-projects" type="button">Neu laden</button>
+            </div>
+            <div id="project-list" class="project-list"></div>
+          </section>
+
+          <section class="panel-section">
+            <h2>Projekt anlegen</h2>
+            <form id="project-form" class="stack compact">
+              <label><span>Name</span><input id="project-name" type="text" required /></label>
+              <label><span>Beschreibung</span><textarea id="project-description" rows="3"></textarea></label>
+              <label><span>Template</span><select id="project-template"></select></label>
+              <label><span>Besitzer</span><select id="project-owner-type"><option value="user">Eigenes Profil</option><option value="group">Gruppe</option></select></label>
+              <label><span>Gruppe</span><select id="project-group"></select></label>
+              <button type="submit" class="primary">Projekt erstellen</button>
+            </form>
+          </section>
+        </aside>
+
+        <section class="panel editor-panel">
+          <section class="panel-section">
+            <div class="section-head">
+              <div>
+                <h2 id="editor-project-name">Editor</h2>
+                <p id="editor-project-meta" class="muted"></p>
+              </div>
+              <div class="inline-actions">
+                <button id="save-file" type="button">Speichern</button>
+                <button id="run-file" type="button" class="primary">Datei ausfuehren</button>
+                <button id="run-file-live" type="button">Live ausfuehren</button>
+                <button id="stop-live-run" type="button">Session beenden</button>
+                <button id="open-preview" type="button">Vorschau</button>
+              </div>
+            </div>
+
+            <div class="editor-layout">
+              <div class="file-tree-wrap">
+                <h3>Dateien</h3>
+                <div id="file-tree" class="file-tree"></div>
+              </div>
+
+              <div class="editor-wrap">
+                <label><span>Dateipfad</span><input id="file-path" type="text" /></label>
+                <textarea id="file-editor" class="file-editor" spellcheck="false"></textarea>
+                <label class="run-stdin-wrap">
+                  <span>Programm-Eingabe / Live-Eingabe</span>
+                  <textarea id="run-stdin" class="stdin-box" rows="4" spellcheck="false" placeholder="Direktlauf: vorbereitete Eingabe. Live-Modus: Text eingeben und mit Senden abschicken."></textarea>
+                </label>
+                <div class="inline-actions">
+                  <button id="send-live-input" type="button">Eingabe senden</button>
+                  <p id="live-run-status" class="muted"></p>
+                </div>
+                <pre id="run-output" class="output-box terminal-surface" tabindex="0">Noch keine Ausfuehrung.</pre>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-head">
+              <h2>Notebook-Zellen</h2>
+              <div class="inline-actions">
+                <button id="add-cell" type="button">Zelle hinzufuegen</button>
+                <button id="save-notebook" type="button">Notebook speichern</button>
+              </div>
+            </div>
+            <p id="collab-status" class="muted"></p>
+            <div id="collab-presence" class="presence-list"></div>
+            <div id="notebook-cells" class="notebook-cells"></div>
+          </section>
+
+          <section id="playground-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Distributed Playground</h2>
+              <div class="inline-actions">
+                <button id="refresh-playground" type="button">Status</button>
+                <button id="start-playground" type="button" class="primary">Starten</button>
+                <button id="stop-playground" type="button">Stoppen</button>
+              </div>
+            </div>
+            <p id="playground-status" class="muted"></p>
+            <div id="playground-services" class="stack compact"></div>
+          </section>
+        </section>
+
+        <aside id="right-panel" class="panel right-panel">
+          <section class="panel-section">
+            <div class="section-head">
+              <h2>Chat</h2>
+              <button id="refresh-chat" type="button">Neu laden</button>
+            </div>
+            <label><span>Raum</span><select id="chat-room"></select></label>
+            <div id="chat-messages" class="chat-messages"></div>
+            <form id="chat-form" class="stack compact">
+              <textarea id="chat-input" rows="3" placeholder="Nachricht in den aktuellen Raum senden"></textarea>
+              <button type="submit" class="primary">Senden</button>
+            </form>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-head">
+              <h2>Offline-Dokumentation</h2>
+              <button id="open-reference-library" type="button">Originale Offline-Bibliothek</button>
+            </div>
+            <p class="muted">Schnellstart lokal im Panel. Die vollstaendige lokale Referenzbibliothek mit Suche und gespiegelten Quellen oeffnet in einer eigenen Ansicht.</p>
+            <label><span>Dokument</span><select id="doc-select"></select></label>
+            <article id="doc-content" class="doc-content"></article>
+          </section>
+
+          <section id="curriculum-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Modullehrplan</h2>
+              <button id="refresh-curriculum" type="button">Neu laden</button>
+            </div>
+            <label><span>Kurs</span><select id="curriculum-course"></select></label>
+            <p id="curriculum-course-meta" class="muted"></p>
+            <div id="curriculum-result-banner" class="stack compact"></div>
+            <div id="curriculum-module-list" class="stack compact"></div>
+            <div id="curriculum-module-detail" class="stack compact"></div>
+          </section>
+
+          <section class="panel-section">
+            <h2>LM Studio Codehilfe</h2>
+            <p id="assistant-status" class="muted"></p>
+            <form id="assistant-form" class="stack compact">
+              <label><span>Modus</span><select id="assistant-mode"><option value="direct">Direkte Hilfe</option><option value="mentor">Sokratischer Mentor</option></select></label>
+              <textarea id="assistant-prompt" rows="5" placeholder="Frage zur aktuellen Datei oder zum Projekt stellen"></textarea>
+              <button type="submit" class="primary">Fragen</button>
+            </form>
+            <pre id="assistant-output" class="output-box">Noch keine Anfrage.</pre>
+            <div id="mentor-thread" class="chat-messages mentor-thread"></div>
+          </section>
+
+          <section id="review-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Peer Review</h2>
+              <div class="inline-actions">
+                <button id="refresh-reviews" type="button">Neu laden</button>
+                <button id="submit-review-project" type="button" class="primary">Aktuelles Projekt einreichen</button>
+              </div>
+            </div>
+            <div id="review-submissions" class="stack compact"></div>
+            <div id="review-assignments" class="stack compact"></div>
+            <div id="review-analytics" class="stack compact"></div>
+          </section>
+
+          <section id="deployment-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Share und Export</h2>
+              <div class="inline-actions">
+                <button id="refresh-artifacts" type="button">Neu laden</button>
+                <button id="share-project" type="button" class="primary">Public Share</button>
+                <button id="export-project" type="button">Export</button>
+              </div>
+            </div>
+            <div id="deployment-artifacts" class="stack compact"></div>
+          </section>
+
+          <section id="curriculum-manage-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Modullehrplan verwalten</h2>
+              <button id="refresh-curriculum-manage" type="button">Neu laden</button>
+            </div>
+            <form id="curriculum-release-form" class="stack compact">
+              <label><span>Kurs</span><select id="curriculum-manage-course"></select></label>
+              <label><span>Freigabe fuer</span><select id="curriculum-release-scope-type"><option value="user">Benutzer</option><option value="group">Gruppe</option></select></label>
+              <label><span>Ziel</span><select id="curriculum-release-scope-key"></select></label>
+              <label class="toggle-row">
+                <input id="curriculum-release-enabled" type="checkbox" checked />
+                <span>Kurs freischalten</span>
+              </label>
+              <textarea id="curriculum-release-note" rows="2" placeholder="Didaktische Notiz oder Hinweis"></textarea>
+              <button type="submit">Freigabe speichern</button>
+              </form>
+              <div id="curriculum-release-list" class="stack compact"></div>
+              <div id="curriculum-learner-list" class="stack compact"></div>
+              <label><span>Pruefungsprotokoll fuer Schueler</span><select id="curriculum-attempt-user"></select></label>
+              <div id="curriculum-attempt-list" class="stack compact"></div>
+              <div class="admin-card stack compact">
+                <div class="section-head">
+                  <h3>Kurse entwickeln</h3>
+                  <div class="inline-actions">
+                    <button id="curriculum-author-load" type="button">Vorlage laden</button>
+                    <button id="curriculum-author-new" type="button">Neuer Kurs</button>
+                    <button id="curriculum-author-save" type="button" class="primary">Kurs speichern</button>
+                  </div>
+                </div>
+                <label><span>Vorlage oder bestehender Kurs</span><select id="curriculum-author-source"></select></label>
+                <p id="curriculum-author-status" class="muted"></p>
+                <div id="curriculum-author-editor" class="stack compact"></div>
+              </div>
+            </section>
+
+          <section id="server-settings-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Servereinstellungen</h2>
+              <button id="refresh-server-settings" type="button">Neu laden</button>
+            </div>
+            <p class="muted">Eigener Einstellungsbereich fuer Host, Port, Laufzeiten, Worker, KI, Container, Scheduler und Schulbranding.</p>
+
+            <div class="admin-card stack compact">
+              <div class="section-head">
+                <h3>Systemstatus und Laufzeit</h3>
+                <p id="settings-restart-flag" class="muted"></p>
+              </div>
+              <div id="settings-runtime-summary" class="readout-grid"></div>
+              <div id="settings-runtime-paths" class="readout-grid readout-grid-wide"></div>
+            </div>
+
+            <form id="settings-form" class="stack compact admin-card">
+              <h3>Serverkonfiguration</h3>
+
+              <fieldset class="settings-fieldset">
+                <legend>Serverbasis</legend>
+                <div class="settings-grid">
+                  <label><span>Schulname</span><input id="setting-school-name" type="text" placeholder="Nova School Server" /></label>
+                  <label><span>Bind-Host</span><input id="setting-host" type="text" placeholder="0.0.0.0" /></label>
+                  <label><span>Port</span><input id="setting-port" type="number" min="1" max="65535" placeholder="8877" /></label>
+                  <label><span>Session-TTL in Sekunden</span><input id="setting-session-ttl" type="number" min="300" placeholder="43200" /></label>
+                  <label><span>Direktlauf-Timeout in Sekunden</span><input id="setting-run-timeout" type="number" min="5" placeholder="20" /></label>
+                  <label><span>Live-Timeout in Sekunden</span><input id="setting-live-run-timeout" type="number" min="30" placeholder="300" /></label>
+                  <label><span>Tenant-ID</span><input id="setting-tenant-id" type="text" placeholder="nova-school" /></label>
+                  <label><span>NovaShell-Pfad</span><input id="setting-nova-shell-path" type="text" placeholder="H:\\Nova-shell-main" /></label>
+                </div>
+                <p class="muted">Diese Kernparameter werden in <code>server_config.json</code> gespeichert und nach einem Server-Neustart wirksam.</p>
+              </fieldset>
+
+              <fieldset class="settings-fieldset">
+                <legend>Netzwerk, Worker und KI</legend>
+                <div class="settings-grid">
+                  <label><span>Oeffentliche Server-IP oder Hostname fuer Worker</span><input id="setting-server-public-host" type="text" placeholder="192.168.178.62 oder server.schule.local" /></label>
+                  <label><span>LM Studio Base URL</span><input id="setting-lmstudio-base" type="text" placeholder="http://127.0.0.1:1234/v1" /></label>
+                  <label><span>LM Studio Modell</span><input id="setting-lmstudio-model" type="text" placeholder="z. B. qwen2.5-coder" /></label>
+                  <label><span>HTTP/HTTPS-Proxy fuer Webfreigaben</span><input id="setting-web-proxy-url" type="text" placeholder="http://proxy.schule.local:3128" /></label>
+                  <label><span>NO_PROXY-Ausnahmen</span><input id="setting-web-proxy-no-proxy" type="text" placeholder="localhost,127.0.0.1" /></label>
+                  <label><span>Playground-Dispatch</span>
+                    <select id="setting-playground-dispatch-mode">
+                      <option value="worker">Remote-Worker</option>
+                      <option value="local">Lokal auf dem Server</option>
+                    </select>
+                  </label>
+                </div>
+                <label class="toggle-row">
+                  <input id="setting-web-proxy-required" type="checkbox" />
+                  <span>Webfreigaben nur mit erzwungenem Proxy erlauben</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="settings-fieldset">
+                <legend>Zertifikate und Schulbranding</legend>
+                <div class="settings-grid">
+                  <label><span>Logo-Pfad fuer Zertifikate</span><input id="setting-certificate-logo-path" type="text" placeholder="D:\\Schule\\logo.png" /></label>
+                  <label><span>Name der unterschreibenden Lehrkraft oder Schule</span><input id="setting-certificate-signatory-name" type="text" placeholder="Fachschaft Informatik" /></label>
+                  <label><span>Funktion</span><input id="setting-certificate-signatory-title" type="text" placeholder="Fachschaft Informatik" /></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="settings-fieldset">
+                <legend>Runner und Container-Isolation</legend>
+                <div class="settings-grid">
+                  <label><span>Runner-Backend</span>
+                    <select id="setting-runner-backend">
+                      <option value="container">Container</option>
+                      <option value="process">Host-Prozess (unsicherer Fallback)</option>
+                    </select>
+                  </label>
+                  <label><span>Container-Runtime</span>
+                    <select id="setting-container-runtime">
+                      <option value="docker">Docker</option>
+                      <option value="podman">Podman</option>
+                    </select>
+                  </label>
+                  <label><span>Optionale OCI-Runtime</span><input id="setting-container-oci-runtime" type="text" placeholder="runsc oder kata-runtime" /></label>
+                  <label><span>Container RAM</span><input id="setting-container-memory" type="text" placeholder="512m" /></label>
+                  <label><span>Container CPU</span><input id="setting-container-cpu" type="text" placeholder="1.5" /></label>
+                  <label><span>Container PIDs</span><input id="setting-container-pids" type="text" placeholder="128" /></label>
+                  <label><span>Max. Dateigroesse in KB</span><input id="setting-container-fsize" type="number" min="1024" placeholder="65536" /></label>
+                  <label><span>Max. offene Dateien</span><input id="setting-container-nofile" type="number" min="64" placeholder="256" /></label>
+                  <label><span>tmpfs-Limit</span><input id="setting-container-tmpfs" type="text" placeholder="64m" /></label>
+                  <label><span>Seccomp-Profilpfad</span><input id="setting-container-seccomp-profile" type="text" placeholder="Optionales Profil" /></label>
+                </div>
+                <label class="toggle-row">
+                  <input id="setting-unsafe-process" type="checkbox" />
+                  <span>Unsicheren Host-Prozess-Runner nur fuer Lehrkraft/Admin erlauben</span>
+                </label>
+                <label class="toggle-row">
+                  <input id="setting-container-seccomp-enabled" type="checkbox" />
+                  <span>Seccomp-Denylist fuer Container aktivieren</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="settings-fieldset">
+                <legend>Container-Images</legend>
+                <div class="settings-grid">
+                  <label><span>Python-Image</span><input id="setting-container-image-python" type="text" placeholder="python:3.12-slim" /></label>
+                  <label><span>Node-Image</span><input id="setting-container-image-node" type="text" placeholder="node:20-bookworm-slim" /></label>
+                  <label><span>C++-Image</span><input id="setting-container-image-cpp" type="text" placeholder="gcc:14" /></label>
+                  <label><span>Java-Image</span><input id="setting-container-image-java" type="text" placeholder="eclipse-temurin:21" /></label>
+                  <label><span>Rust-Image</span><input id="setting-container-image-rust" type="text" placeholder="rust:1.81" /></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="settings-fieldset">
+                <legend>Scheduler und Fairness</legend>
+                <div class="settings-grid">
+                  <label><span>Globale gleichzeitige Runs</span><input id="setting-scheduler-global" type="number" min="1" placeholder="4" /></label>
+                  <label><span>Gleichzeitige Student-Runs pro Nutzer</span><input id="setting-scheduler-student" type="number" min="1" placeholder="1" /></label>
+                  <label><span>Gleichzeitige Lehrkraft-Runs pro Nutzer</span><input id="setting-scheduler-teacher" type="number" min="1" placeholder="2" /></label>
+                  <label><span>Gleichzeitige Admin-Runs pro Nutzer</span><input id="setting-scheduler-admin" type="number" min="1" placeholder="3" /></label>
+                </div>
+              </fieldset>
+
+              <div id="settings-extra-wrapper" class="hidden">
+                <fieldset class="settings-fieldset">
+                  <legend>Weitere gespeicherte Settings</legend>
+                  <div id="settings-extra-fields" class="readout-grid readout-grid-wide"></div>
+                </fieldset>
+              </div>
+
+              <p class="muted">Empfohlen ist Container-Betrieb. Im Container-Modus sieht der Runner nur eine materialisierte Run-Kopie, nicht das Live-Projektverzeichnis. Fuer freigegebene Weblaeufe kann ein Proxy erzwungen werden; optional ist auch eine gehärtete OCI-Runtime wie <code>runsc</code> oder <code>kata-runtime</code> moeglich.</p>
+              <button type="submit">Einstellungen speichern</button>
+            </form>
+          </section>
+
+          <section id="admin-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Serververwaltung</h2>
+              <button id="refresh-admin" type="button">Admin neu laden</button>
+            </div>
+            <div id="admin-summary" class="admin-summary"></div>
+
+            <div class="admin-grid">
+              <form id="create-user-form" class="stack compact admin-card">
+                <h3>Benutzer anlegen</h3>
+                <input id="admin-user-username" type="text" placeholder="username" required />
+                <input id="admin-user-display" type="text" placeholder="Anzeigename" required />
+                <input id="admin-user-password" type="text" placeholder="Startpasswort" required />
+                <select id="admin-user-role"><option value="student">student</option><option value="teacher">teacher</option><option value="admin">admin</option></select>
+                <button type="submit">Benutzer speichern</button>
+              </form>
+
+              <form id="manage-user-form" class="stack compact admin-card">
+                <h3>Benutzer verwalten</h3>
+                <label><span>Benutzer</span><select id="manage-user-target"></select></label>
+                <label><span>Anzeigename</span><input id="manage-user-display" type="text" required /></label>
+                <label><span>Rolle</span><select id="manage-user-role"><option value="student">student</option><option value="teacher">teacher</option><option value="admin">admin</option></select></label>
+                <label><span>Status</span><select id="manage-user-status"><option value="active">active</option><option value="inactive">inactive</option><option value="suspended">suspended</option></select></label>
+                <label><span>Neues Passwort optional</span><input id="manage-user-password" type="text" placeholder="leer lassen fuer keine Aenderung" /></label>
+                <p id="manage-user-meta" class="muted"></p>
+                <button type="submit">Benutzer aktualisieren</button>
+              </form>
+
+              <form id="create-group-form" class="stack compact admin-card">
+                <h3>Gruppe anlegen</h3>
+                <input id="admin-group-name" type="text" placeholder="Klasse 2B" required />
+                <textarea id="admin-group-description" rows="3" placeholder="Beschreibung"></textarea>
+                <button type="submit">Gruppe speichern</button>
+              </form>
+
+              <form id="membership-form" class="stack compact admin-card">
+                <h3>Mitgliedschaft</h3>
+                <select id="membership-user"></select>
+                <select id="membership-group"></select>
+                <select id="membership-action"><option value="add">hinzufuegen</option><option value="remove">entfernen</option></select>
+                <button type="submit">Mitgliedschaft speichern</button>
+              </form>
+
+              <form id="mute-form" class="stack compact admin-card">
+                <h3>Chat stummschalten</h3>
+                <select id="mute-room"></select>
+                <select id="mute-user"></select>
+                <input id="mute-duration" type="number" min="1" value="10" />
+                <input id="mute-reason" type="text" placeholder="Grund" />
+                <button type="submit">Mute setzen</button>
+              </form>
+
+              <form id="worker-bootstrap-form" class="stack compact admin-card">
+                <h3>Remote-Worker bootstrapen</h3>
+                <input id="worker-bootstrap-id" type="text" placeholder="lab-node-01" required />
+                <input id="worker-bootstrap-name" type="text" placeholder="Lab Node 01" required />
+                <select id="worker-bootstrap-runtime">
+                  <option value="python">python</option>
+                  <option value="node">node</option>
+                  <option value="rust">rust</option>
+                  <option value="*">alle</option>
+                </select>
+                <button type="submit">Worker-Token erzeugen</button>
+              </form>
+            </div>
+
+            <div class="admin-card">
+              <h3>Benutzerprotokoll</h3>
+              <p class="muted">Alle sichtbaren Änderungen aus der Benutzerverwaltung werden hier pro Benutzer protokolliert und bleiben nachvollziehbar.</p>
+              <div id="manage-user-audit" class="stack compact"></div>
+            </div>
+
+            <div class="admin-card">
+              <h3>Worker-Bootstrap-Ausgabe</h3>
+              <p class="muted">Das Token wird nur beim Erzeugen angezeigt und muss danach sicher auf den Worker-Rechner uebertragen werden.</p>
+              <textarea id="worker-bootstrap-output" rows="8" readonly></textarea>
+            </div>
+
+            <div class="admin-grid">
+              <div class="admin-card">
+                <h3>Benutzerrechte</h3>
+                <label><span>Benutzer</span><select id="user-permission-target"></select></label>
+                <div id="user-permissions" class="permission-grid"></div>
+                <button id="save-user-permissions" type="button">Benutzerrechte speichern</button>
+              </div>
+
+              <div class="admin-card">
+                <h3>Gruppenrechte</h3>
+                <label><span>Gruppe</span><select id="group-permission-target"></select></label>
+                <div id="group-permissions" class="permission-grid"></div>
+                <button id="save-group-permissions" type="button">Gruppenrechte speichern</button>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </main>
+    </section>
+
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

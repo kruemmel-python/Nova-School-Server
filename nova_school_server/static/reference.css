@@ -1,0 +1,382 @@
+.reference-body {
+  min-height: 100vh;
+}
+
+.reference-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1540px, calc(100vw - 1.6rem));
+  margin: 0 auto;
+  padding: 1.4rem 0;
+}
+
+.reference-body.reference-wide-reading .reference-shell {
+  width: min(1880px, calc(100vw - 1.6rem));
+}
+
+.reference-hero,
+.reference-card,
+.reference-area-card,
+.reference-result {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.reference-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+  padding: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.reference-hero h1 {
+  margin: 0 0 0.35rem;
+}
+
+.reference-lead,
+.reference-muted {
+  color: var(--muted);
+}
+
+.reference-actions,
+.reference-toolbar,
+.reference-toolbar-group,
+.reference-section-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.reference-toolbar {
+  justify-content: space-between;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.reference-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(18, 109, 103, 0.08);
+  color: var(--accent-dark);
+  border: 1px solid rgba(18, 109, 103, 0.12);
+}
+
+.reference-button,
+.reference-inline-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(24, 33, 38, 0.08);
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.reference-inline-button {
+  min-height: 34px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.reference-button.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.reference-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.reference-sidebar {
+  min-width: 0;
+}
+
+.reference-sidebar-rail {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.reference-card {
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.reference-card h2 {
+  margin: 0 0 0.85rem;
+}
+
+.reference-section-head {
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.reference-section-head h2 {
+  margin: 0;
+}
+
+.reference-area-list,
+.reference-nav,
+.reference-results {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.reference-area-card,
+.reference-nav-link,
+.reference-result {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.85rem 0.95rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.reference-area-card strong,
+.reference-area-card span,
+.reference-area-card small,
+.reference-result strong,
+.reference-result span,
+.reference-result small,
+.reference-nav-link {
+  overflow-wrap: anywhere;
+}
+
+.reference-area-card span,
+.reference-result span {
+  color: var(--accent-dark);
+}
+
+.reference-area-card small,
+.reference-result small {
+  color: var(--muted);
+}
+
+.reference-area-card.active,
+.reference-nav-link.active {
+  background: var(--accent);
+  color: white;
+}
+
+.reference-area-card.active span,
+.reference-area-card.active small,
+.reference-nav-link.active {
+  color: white;
+}
+
+.reference-nav-link {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(24, 33, 38, 0.06);
+}
+
+.reference-main {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.reference-main > .reference-card {
+  min-width: 0;
+}
+
+.reference-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: end;
+}
+
+.reference-search label,
+.reference-search label span {
+  min-width: 0;
+}
+
+.reference-search input {
+  width: 100%;
+}
+
+.reference-doc-head {
+  margin-bottom: 0.9rem;
+}
+
+.reference-doc-head h2 {
+  margin: 0 0 0.35rem;
+}
+
+.reference-article {
+  max-width: 1024px;
+  line-height: 1.72;
+}
+
+.reference-article p,
+.reference-article ul,
+.reference-article ol,
+.reference-article table,
+.reference-article pre {
+  margin: 1rem 0;
+}
+
+.reference-article ul,
+.reference-article ol {
+  padding-left: 1.4rem;
+}
+
+.reference-article li + li {
+  margin-top: 0.45rem;
+}
+
+.reference-body.reference-wide-reading .reference-article {
+  max-width: none;
+}
+
+.reference-article h1,
+.reference-article h2,
+.reference-article h3 {
+  margin-top: 1.4rem;
+}
+
+.reference-article h1:first-child,
+.reference-article h2:first-child {
+  margin-top: 0;
+}
+
+.reference-article code,
+.reference-pre code {
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+
+.reference-pre,
+.reference-path {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 18px;
+  overflow: auto;
+  background: var(--panel-strong);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  white-space: pre-wrap;
+}
+
+.reference-table-wrap {
+  overflow: auto;
+}
+
+.reference-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.reference-table th,
+.reference-table td {
+  padding: 0.85rem 0.95rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(24, 33, 38, 0.08);
+}
+
+.reference-table thead th {
+  background: rgba(18, 109, 103, 0.08);
+  color: var(--ink);
+}
+
+.reference-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.reference-frame {
+  width: 100%;
+  min-height: 72vh;
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  border-radius: 20px;
+  background: white;
+}
+
+.reference-body.reference-wide-reading .reference-frame {
+  min-height: 80vh;
+}
+
+.reference-notice {
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: rgba(18, 109, 103, 0.08);
+  color: var(--accent-dark);
+}
+
+.reference-body.reference-sidebar-collapsed .reference-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.reference-body.reference-sidebar-collapsed .reference-sidebar {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .reference-shell,
+  .reference-body.reference-wide-reading .reference-shell {
+    width: min(100%, calc(100vw - 1.2rem));
+  }
+
+  .reference-grid,
+  .reference-hero {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .reference-sidebar {
+    display: block;
+  }
+
+  .reference-sidebar-rail {
+    position: static;
+  }
+
+  .reference-search {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .reference-shell {
+    width: min(100%, calc(100vw - 0.8rem));
+    padding: 0.8rem 0;
+  }
+
+  .reference-card,
+  .reference-hero {
+    padding: 1rem;
+  }
+
+  .reference-toolbar {
+    padding: 0.9rem 1rem;
+  }
+
+  .reference-button,
+  .reference-inline-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "defaultErrnoRet": 1,
+  "archMap": [
+    {
+      "architecture": "SCMP_ARCH_X86_64",
+      "subArchitectures": [
+        "SCMP_ARCH_X86",
+        "SCMP_ARCH_X32"
+      ]
+    },
+    {
+      "architecture": "SCMP_ARCH_AARCH64",
+      "subArchitectures": [
+        "SCMP_ARCH_ARM"
+      ]
+    }
+  ],
+  "syscalls": [
+    {
+      "names": [
+        "ptrace",
+        "process_vm_readv",
+        "process_vm_writev",
+        "kexec_load",
+        "finit_module",
+        "init_module",
+        "delete_module",
+        "bpf",
+        "perf_event_open",
+        "mount",
+        "umount2",
+        "pivot_root",
+        "open_by_handle_at",
+        "name_to_handle_at",
+        "iopl",
+        "ioperm",
+        "swapon",
+        "swapoff",
+        "setns",
+        "unshare",
+        "move_mount",
+        "fsopen",
+        "fsconfig",
+        "fsmount",
+        "fspick"
+      ],
+      "action": "SCMP_ACT_ERRNO"
+    }
+  ]
+}

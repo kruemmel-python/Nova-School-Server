@@ -1,0 +1,17 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv-build\\Scripts\\python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.autoImportCompletions": true,
+  "cSpell.language": "en,de-DE",
+  "cSpell.enabledLanguageIds": [
+    "python",
+    "markdown",
+    "plaintext",
+    "json",
+    "yaml"
+  ]
+}

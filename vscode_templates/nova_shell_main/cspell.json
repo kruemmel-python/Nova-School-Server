@@ -1,0 +1,43 @@
+{
+  "version": "0.2",
+  "language": "en,de-DE",
+  "words": [
+    "Atheria",
+    "novascript",
+    "NovaRuntime",
+    "WorkerNode",
+    "SIDELOAD",
+    "ARCHITEW",
+    "getwindowsversion",
+    "Inferenz",
+    "Laufzeiten",
+    "skalierbare",
+    "Infrastruktur",
+    "regulatorische",
+    "Robustheit",
+    "angewandte",
+    "Forschung",
+    "Signalsensorik",
+    "Themenfeld",
+    "Signalstaerke",
+    "Ressourcendruck",
+    "Anomaliegrad",
+    "Beobachtungszyklen",
+    "Aufwaertsbewegung",
+    "Verdichtung",
+    "Abkuehlungs",
+    "Konsolidierungsphase",
+    "beobachtungswuerdiger",
+    "Trendexplosion",
+    "Einschaetzung",
+    "Konfidenz",
+    "Signalpunkte"
+  ],
+  "ignorePaths": [
+    ".git",
+    "__pycache__",
+    ".venv-build",
+    "build",
+    "dist"
+  ]
+}
