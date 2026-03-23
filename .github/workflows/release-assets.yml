@@ -78,7 +78,7 @@ jobs:
             release-artifacts/Nova-School-Server-v${{ env.VERSION }}-linux-server-package.zip
 
       - name: Upload workflow artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-artifacts-${{ env.TAG_NAME }}
           path: release-artifacts/
