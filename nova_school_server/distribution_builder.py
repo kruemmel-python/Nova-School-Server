@@ -302,12 +302,19 @@ def main() -> None:
     parser.add_argument("base_path", nargs="?", default=".", help="Projektwurzel")
     parser.add_argument("--output-dir", default=".", help="Zielordner fuer das Archiv")
     parser.add_argument("--version", default="", help="Optionale Versionsnummer")
+    parser.add_argument(
+        "--flavor",
+        default="distribution",
+        choices=sorted(PACKAGE_FLAVORS),
+        help="Pakettyp: distribution, windows-server-package oder linux-server-package",
+    )
     args = parser.parse_args()
 
     result = build_distribution_archive(
         Path(args.base_path),
         output_dir=Path(args.output_dir),
         version=args.version or None,
+        flavor=args.flavor,
     )
     print(result.archive_path)
 
