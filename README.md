@@ -96,6 +96,23 @@ Oder nach Installation des Projekts:
 nova-school-build-distribution D:\Nova_school_server --output-dir D:\Nova_school_server
 ```
 
+Plattformspezifische Serverpakete:
+
+```powershell
+cd D:\Nova_school_server
+python -m nova_school_server.distribution_builder D:\Nova_school_server --output-dir D:\Nova_school_server --flavor windows-server-package
+python -m nova_school_server.distribution_builder D:\Nova_school_server --output-dir D:\Nova_school_server --flavor linux-server-package
+```
+
+Diese Pakete enthalten dieselbe bereinigte Serverbasis, aber mit eigener Installationsanleitung:
+
+- `windows-server-package`
+  - nur Windows-Startskripte
+  - Anleitung fuer Python, Docker Desktop und Windows-Firewall
+- `linux-server-package`
+  - nur Linux-Startskripte
+  - Anleitung fuer venv, Docker/Podman und produktiven Ubuntu-Betrieb
+
 ## Demo-Logins
 
 - `admin / NovaSchool!admin`
