@@ -1,2 +1,2 @@
 pywinpty>=3.0.3; platform_system == "Windows"
-Pillow>=10.0.0
+Pillow>=12.2.0
